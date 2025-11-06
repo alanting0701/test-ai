@@ -1,5 +1,6 @@
 import os
 import random
+import csv
 
 def get_names(file_name):
     # 使用names.txt的絕對路徑
@@ -23,7 +24,18 @@ def get_scores(names, num=10):
         scores.append(info)
     return scores
     
+def save_csv(students,filename):
+    fieldnames = students[0].keys()
+    current_dir = os.path.dirname(os.path.abspath("__file__"))
+    file_path = os.path.join(current_dir,'assets',filename)
+
+    with open(file_path, 'w', newline='', encoding='utf-8') as csvfile:
+        writer = csv.DictWriter(csvfile, fieldnames=fieldnames)
+        writer.writeheader()
+        for d in students:
+            writer.writerow(d)
+
 names = get_names("names.txt")
 num = int(input("請輸入學生數量:"))
 students = get_scores(names,num=num)
-print(students)
+save_csv(students,'students.csv')
