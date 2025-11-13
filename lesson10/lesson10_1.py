@@ -1,5 +1,5 @@
 import os
-import tools
+from tools import gear
 
 def get_asset_path(filename: str) -> str:
     """取得 assets 資料夾內檔案的完整路徑"""
@@ -11,7 +11,7 @@ def get_asset_path(filename: str) -> str:
 def main():
     file_path = get_asset_path("names.txt")
 
-    names: list[str] = tools.get_names(file_path)
+    names: list[str] = gear.get_names(file_path)
     
     if not names:
         print("無法讀取名單,程式結束")
@@ -26,9 +26,9 @@ def main():
         print("請輸入有效的數字")
         return
     
-    students: list[dict] = tools.get_scores(names, num=num)
+    students: list[dict] = gear.get_scores(names, num=num)
     file_path = get_asset_path('students.csv')
-    tools.save_csv(students, file_path)
+    gear.save_csv(students, file_path)
 
 if __name__ == '__main__':
     main()
