@@ -68,11 +68,19 @@ def get_datafolder_files() -> list[str]:
     return file_list
 
 def main():
-    #取得所有每年乘客資料檔案名稱
+    # 取得所有每年乘客資料檔案名稱
     data_list:list[str] = get_datafolder_files()
-    print(data_list)
+    all_years_data = []
+    for year_file in data_list:
+        year_DataFrame = merge_station_passenger_data(year_file)
+        all_years_data.append(year_DataFrame)
 
-    print("Hello Lesson 19")
+    final_dataFrame = pd.concat(all_years_data, ignore_index=True)
+    final_dataFrame.sort_values(by=["乘車日期"],inplace=True)
+    keelung_data = final_dataFrame.query("車站名稱 == '基隆'")
+    keelung_data.to_excel("基隆車站每日進出站人數.xlsx", index=False)
+    
+
 
 if __name__ == "__main__":
     main()
