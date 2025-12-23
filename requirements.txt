@@ -3,3 +3,9 @@ numpy
 pandas
 matplotlib
 seaborn
+flask
+ipykernel
+jinja2
+openpyxl
+wget
+yfinance

@@ -13,6 +13,6 @@ dependencies = [
     "seaborn>=0.13.2",
     "wget>=3.2",
     "yfinance>=0.2.66",
+    "gunicorn",
+    "waitress",
 ]
-pip install yfinance
-pip install "pandas[excel]"
